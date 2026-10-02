@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Maidem Ji 🌸</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fff0f3 0%, #ffccd5 50%, #ffb3c1 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #4a4a4a;
+            overflow: hidden;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 40px 30px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(214, 51, 108, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .emoji-header {
+            font-size: 60px;
+            margin-bottom: 15px;
+            animation: float 2.5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        h2 {
+            color: #d6336c;
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        p {
+            color: #6c757d;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 60px;
+        }
+
+        button {
+            padding: 12px 26px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b8b, #d6336c);
+            color: white;
+            box-shadow: 0 6px 18px rgba(214, 51, 108, 0.3);
+            z-index: 2;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 22px rgba(214, 51, 108, 0.4);
+        }
+
+        .btn-runaway {
+            background: #f1f3f5;
+            color: #d6336c;
+            border: 1px solid #ffccd5;
+            position: absolute;
+            z-index: 5;
+            transition: transform 0.2s ease-out;
+            white-space: nowrap;
+        }
+
+        .phase {
+            display: none;
+        }
+
+        .phase.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .slider-container {
+            margin: 25px 0;
+        }
+
+        input[type=range] {
+            width: 100%;
+            accent-color: #d6336c;
+            height: 8px;
+            border-radius: 5px;
+        }
+
+        .slider-val {
+            font-weight: 700;
+            color: #d6336c;
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card" id="cardContainer">
+    <!-- PHASE 1 -->
+    <div class="phase active" id="phase1">
+        <div class="emoji-header">🥺</div>
+        <h2>Hey Maidem Ji...</h2>
+        <p>Are you still angry with me?</p>
+        <div class="btn-group">
+            <button class="btn-primary" onclick="goToPhase(2)">A little bit... 😤</button>
+            <button class="btn-primary" style="background:#f1f3f5; color:#495057;" onclick="goToPhase(3)">No, not anymore 🌸</button>
+        </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase" id="phase2">
+        <div class="emoji-header" id="angerEmoji">🥺</div>
+        <h2>How angry are you?</h2>
+        <div class="slider-container">
+            <input type="range" id="angerSlider" min="1" max="100" value="00" oninput="updateAnger(this.value)">
+            <div class="slider-val" id="angerText">00% Angry</div>
+        </div>
+        <button class="btn-primary" onclick="goToPhase(3)">Next 💌</button>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase" id="phase3">
+        <div class="emoji-header">💐</div>
+        <h2>I am truly sorry, Maidem Ji</h2>
+        <p>Okay okay, I admit it… I messed up 😭😂. I’m officially submitting my apology before you block me, ignore me, or start giving me the legendary silent treatment 💀. I’m really sorry for making you angry—I genuinely didn’t mean to hurt you. Please forgive this innocent baalak. 🥲🤝😂
+</p>
+        
+        <div class="btn-group" id="phase3BtnGroup">
+            <button class="btn-primary" onclick="goToPhase(4)">Thik Hai Chod Rhi is Baar 💖</button>
+            <button class="btn-runaway" id="noBtn" onmouseover="bounceButton()" onclick="bounceButton()">No 🙈</button>
+        </div>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="phase" id="phase4">
+        <div class="emoji-header">🎉🥳</div>
+        <h2>YAY! Thank You!</h2>
+        <p>Thank you for forgiving me 🥹❤️ I’m really happy Ki Maan Gyi Aap. Now come back to your usual cute-and-annoying self 😂🫶
+✨</p>
+    </div>
+</div>
+
+<script>
+    const pleadings = [
+        "Please 🥺",
+        "Maan jao na 💕",
+        "Galti ho gyi yr 😭",
+        "Kitna bhav khaogi? 🙈",
+        "Aise mat karo yr 🥺",
+        "Pakka last time! ✨",
+        "Sorry Na Maidem Ji! 🌸"
+    ];
+    let phraseIdx = 0;
+
+    function goToPhase(phaseNum) {
+        document.querySelectorAll('.phase').forEach(p => p.classList.remove('active'));
+        document.getElementById('phase' + phaseNum).classList.add('active');
+
+        if (phaseNum === 3) {
+            resetNoButton();
+        }
+    }
+
+    function updateAnger(val) {
+        const text = document.getElementById('angerText');
+        const emoji = document.getElementById('angerEmoji');
+
+        text.innerText = val + '% Angry';
+
+        if (val < 30) {
+            emoji.innerText = "😕";
+        } else if (val < 70) {
+            emoji.innerText = "😤";
+        } else {
+            emoji.innerText = "💥😡";
+        }
+    }
+
+    function bounceButton() {
+        const btn = document.getElementById('noBtn');
+        const card = document.getElementById('cardContainer');
+        
+        // Cycle text to next pleading phrase
+        phraseIdx = (phraseIdx + 1) % pleadings.length;
+        btn.innerText = pleadings[phraseIdx];
+
+        const cardRect = card.getBoundingClientRect();
+        const btnRect = btn.getBoundingClientRect();
+
+        const maxX = (cardRect.width / 2) - (btnRect.width);
+        const maxY = (cardRect.height / 2) - (btnRect.height);
+
+        const randomX = (Math.random() * maxX * 1.6) - (maxX * 0.8);
+        const randomY = (Math.random() * maxY * 1.6) - (maxY * 0.8);
+
+        btn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+    }
+
+    function resetNoButton() {
+        const btn = document.getElementById('noBtn');
+        phraseIdx = 0;
+        btn.innerText = "No 🙈";
+        btn.style.transform = 'translate(85px, 0px)';
+    }
+</script>
+
+</body>
+</html>
